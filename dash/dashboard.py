@@ -3,10 +3,14 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+DATA_PATH = BASE_DIR / "data" / "Base.txt"
 
 @st.cache_data
 def load_data():
-    df = pd.read_csv("../data/Base.csv", sep=",", engine="python")
+    df = pd.read_csv(DATA_PATH, sep=",", engine="python")
     df.columns = df.columns.str.strip()
     df = df.dropna(how="all") 
     
